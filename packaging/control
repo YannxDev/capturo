@@ -22,7 +22,7 @@ Recommends: gir1.2-secret-1,
             gstreamer1.0-vaapi,
             gstreamer1.0-tools
 Maintainer: Yannick <yanmensx@gmail.com>
-Homepage: https://github.com/YannickDev/capturo
+Homepage: https://github.com/YannxDev/capturo
 Description: Enregistreur et diffuseur d'écran pour GNOME
  Capturo enregistre l'écran ou une fenêtre avec la vidéo et le son,
  puis écrit directement le fichier dans le format choisi ou le diffuse

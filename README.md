@@ -1,6 +1,6 @@
 # Capturo
 
-[![CI](https://github.com/YannickDev/capturo/actions/workflows/ci.yml/badge.svg)](https://github.com/YannickDev/capturo/actions/workflows/ci.yml)
+[![CI](https://github.com/YannxDev/capturo/actions/workflows/ci.yml/badge.svg)](https://github.com/YannxDev/capturo/actions/workflows/ci.yml)
 [![Licence : GPL-3.0-or-later](https://img.shields.io/badge/licence-GPL--3.0--or--later-blue.svg)](LICENSE)
 
 Enregistreur **et diffuseur** d'écran pour GNOME, en Python + GTK 4 /
