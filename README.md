@@ -299,7 +299,7 @@ sudo apt remove capturo
 ## Flatpak et CI
 
 Le manifeste `flatpak/io.github.yannick.Capturo.json` cible le runtime
-GNOME 48 et réutilise les extensions GStreamer de Freedesktop. Il autorise
+GNOME 49 et réutilise les extensions GStreamer de Freedesktop. Il autorise
 le portail ScreenCast, PulseAudio, le réseau, `~/Vidéos`, la configuration,
 le cache et le trousseau :
 
@@ -308,6 +308,10 @@ flatpak-builder --user --install --force-clean build-flatpak \
   flatpak/io.github.yannick.Capturo.json
 flatpak run io.github.yannick.Capturo
 ```
+
+Sans `flatpak-builder` ni SDK, `./flatpak/build.sh` produit directement
+`dist/capturo-1.6.2.flatpak` avec le runtime GNOME 49 déjà installé.
+
 
 Les détails (extensions VA-API/NVENC, dépannage) sont dans
 `flatpak/README.md`. Sans les extensions, Capturo utilise le repli

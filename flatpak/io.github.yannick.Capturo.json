@@ -1,7 +1,7 @@
 {
   "app-id": "io.github.yannick.Capturo",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "48",
+  "runtime-version": "49",
   "sdk": "org.gnome.Sdk",
   "command": "capturo",
   "finish-args": [
@@ -22,7 +22,7 @@
       "directory": "lib/extensions/gstreamer",
       "subdirectories": true,
       "no-autodownload": false,
-      "version": "24.08"
+      "version": "25.08"
     }
   },
   "modules": [
