@@ -147,6 +147,25 @@ AppImage. Le bouton ↻ relance la détection. À la fin d'un enregistrement
 fichier, Capturo demande **« Ouvrir la vidéo ? »** et lance le fichier
 avec l'application choisie si tu acceptes.
 
+### Limitation du Flatpak
+
+Le bac à sable Flatpak ne monte ni `/usr/bin`, ni `/usr/share/applications`,
+ni les exports Flatpak de l'hôte. Lancé en Flatpak, Capturo ne peut donc
+pas détecter ni lancer les lecteurs et éditeurs installés sur l'ordinateur :
+la liste reste vide et **Parcourir…** ne les voit pas non plus.
+
+Pour choisir un éditeur, utilise la version Debian :
+
+```bash
+sudo apt install ./capturo_1.6.2_all.deb
+```
+
+Le Flatpak reste adapté à l'enregistrement seul, sans ouverture automatique
+dans un éditeur. Une version Flatpak avec accès à l'hôte est techniquement
+possible (`--filesystem=host` et `--talk-name=org.freedesktop.Flatpak`),
+mais elle supprime l'isolation du bac à sable : ce n'est pas le réglage
+retenu par défaut.
+
 ## Apparence
 
 - **Thème** : Automatique (suit GNOME), Clair ou Sombre.
@@ -402,6 +421,9 @@ python3 tests/test_discovery.py
   pour parcourir toutes les applications vidéo installées, ou sur
   **Parcourir…** pour désigner directement un exécutable / une AppImage.
   Le bouton ↻ relit les lanceurs `.desktop`, Flatpak et Snap.
+  En **Flatpak**, la liste est vide par conception : le bac à sable ne voit
+  pas les applications de l'hôte. Utilise la version `.deb` pour cette
+  fonction.
 - **Fermeture pendant un enregistrement** : Capturo arrête la capture,
   finalise le fichier puis se ferme. En cas de périphérique qui ne répond
   plus, un garde-fou termine le processus au bout de quelques secondes.
