@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: capturo 1.6.2\n"
-"Report-Msgid-Bugs-To: yannick@example.com\n"
+"Report-Msgid-Bugs-To: yanmensx@gmail.com\n"
 "POT-Creation-Date: 2026-10-25 13:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
