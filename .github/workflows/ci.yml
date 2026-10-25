@@ -34,6 +34,9 @@ jobs:
       - name: Tester le pipeline GStreamer
         run: python3 tests/test_pipeline.py
 
+      - name: Tester la conservation du jeton
+        run: python3 tests/test_discovery.py
+
       - name: Construire le paquet Debian
         run: bash build.sh
 

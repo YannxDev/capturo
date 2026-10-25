@@ -6,7 +6,7 @@ import shlex
 import shutil
 import threading
 import time
-from urllib.parse import parse_qs, quote, urlsplit, urlunsplit
+from urllib.parse import urlsplit, urlunsplit
 
 import gi
 
@@ -26,7 +26,7 @@ from gi.repository import (  # noqa: E402
     Pango,
 )
 
-from . import APP_ID, discovery, editors  # noqa: E402
+from . import APP_ID, discovery, editors, tokens  # noqa: E402
 from . import credentials, recorder, settings  # noqa: E402
 from .diagnostics import log, path as log_path  # noqa: E402
 from .portal import ScreenCastSession  # noqa: E402
@@ -934,30 +934,9 @@ class CapturoWindow(Adw.ApplicationWindow):
         ):
             GLib.timeout_add(700, self._auto_detect)
 
-    @staticmethod
-    def _url_token(url: str) -> str:
-        """Jeton éventuel présent dans l'URL de la caméra."""
-        if not url:
-            return ""
-        try:
-            values = parse_qs(urlsplit(url).query).get("token", [])
-        except ValueError:
-            return ""
-        return values[0].strip() if values else ""
-
-    @staticmethod
-    def _url_with_token(url: str, token: str) -> str:
-        """Ajoute le jeton à une URL qui n'en contient pas."""
-        if not url or not token or CapturoWindow._url_token(url):
-            return url
-        parts = urlsplit(url)
-        separator = "&" if parts.query else ""
-        query = f"{parts.query}{separator}token={quote(token)}"
-        return urlunsplit((parts.scheme, parts.netloc, parts.path, query, parts.fragment))
-
     def _save_config(self) -> None:
         camera_url = self._url_row.get_text().strip()
-        token = self._url_token(camera_url)
+        token = tokens.url_token(camera_url)
         if token:
             self._camera_token = token
         data = {
@@ -1218,11 +1197,11 @@ class CapturoWindow(Adw.ApplicationWindow):
         url = urls[0]
         # adb ne transmet pas le jeton du téléphone : on réutilise celui
         # déjà connu pour ne pas remplacer une URL valide par un 401.
-        known_token = self._url_token(self._url_row.get_text()) or getattr(
-            self, "_camera_token", ""
+        url = tokens.preserve_token(
+            url,
+            self._url_row.get_text(),
+            getattr(self, "_camera_token", ""),
         )
-        if known_token:
-            url = self._url_with_token(url, known_token)
         self._url_row.set_text(url)
         self._save_config()
         host = urlsplit(url).hostname or url

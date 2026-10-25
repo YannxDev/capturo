@@ -262,6 +262,18 @@ def probe_usb() -> str | None:
     return None
 
 
+def usb_with_token(local: str, tokens: set[str]) -> str:
+    """Ajoute à l'URL USB le jeton unique découvert en Wi-Fi.
+
+    adb ne transmet pas le jeton du téléphone. Quand la découverte Wi-Fi a
+    annoncé exactement un jeton, on le réutilise pour l'adresse USB ; sinon
+    l'URL reste inchangée et Capturo utilisera le jeton mémorisé.
+    """
+    if local and "token=" not in local and len(tokens) == 1:
+        return f"{local}?token={quote(next(iter(tokens)))}"
+    return local
+
+
 def discover_cameras(timeout: float = 1.5) -> list[str]:
     """Cherche les Capturo Webcam actives.
 
@@ -313,11 +325,7 @@ def discover_cameras(timeout: float = 1.5) -> list[str]:
 
     local = probe_usb()
     if local:
-        # adb ne connaît pas le jeton du téléphone. Si la découverte Wi-Fi
-        # n'a trouvé qu'un seul jeton, on le réutilise pour l'adresse USB.
-        if "token=" not in local and len(tokens) == 1:
-            local += f"?token={quote(next(iter(tokens)))}"
-        found["127.0.0.1"] = local
+        found["127.0.0.1"] = usb_with_token(local, tokens)
 
     return sorted(
         found.values(), key=lambda url: (0 if _is_usb(url) else 1, url)

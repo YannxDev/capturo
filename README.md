@@ -263,7 +263,8 @@ capturo/
 │   └── README.md
 ├── po/                       # traductions gettext (capturo.pot, *.po)
 ├── tests/
-│   └── test_pipeline.py      # test GStreamer headless pour la CI
+│   ├── test_pipeline.py      # test GStreamer headless pour la CI
+│   └── test_discovery.py     # conservation du jeton Wi-Fi/USB
 ├── .github/workflows/ci.yml  # validation, test et paquet Debian
 ├── packaging/                # fichiers Debian
 │   ├── control               # métadonnées + dépendances
@@ -317,6 +318,7 @@ Le workflow `.github/workflows/ci.yml` vérifie à chaque envoi :
 - la syntaxe Python (`compileall`) ;
 - la validité AppStream et du lanceur `.desktop` ;
 - le pipeline GStreamer headless (`tests/test_pipeline.py`) ;
+- la conservation du jeton de la caméra réseau (`tests/test_discovery.py`) ;
 - la construction du paquet Debian, publié comme artefact.
 
 Le test local équivalent :
@@ -326,6 +328,7 @@ python3 -m compileall -q capturo tests
 appstreamcli validate data/io.github.yannick.Capturo.metainfo.xml
 desktop-file-validate data/io.github.yannick.Capturo.desktop
 python3 tests/test_pipeline.py
+python3 tests/test_discovery.py
 ```
 
 ## Comment ça marche
