@@ -1,5 +1,8 @@
 # Capturo
 
+[![CI](https://github.com/YannickDev/capturo/actions/workflows/ci.yml/badge.svg)](https://github.com/YannickDev/capturo/actions/workflows/ci.yml)
+[![Licence : GPL-3.0-or-later](https://img.shields.io/badge/licence-GPL--3.0--or--later-blue.svg)](LICENSE)
+
 Enregistreur **et diffuseur** d'écran pour GNOME, en Python + GTK 4 /
 libadwaita, empaqueté en `.deb`. Il capture un écran ou une fenêtre via le
 portail ScreenCast de GNOME (donc Wayland **et** X11), peut incruster la
@@ -407,6 +410,11 @@ python3 tests/test_discovery.py
 - **Fichier illisible après un arrêt brutal** : MP4 et WebM ont besoin de
   l'EOS ; Capturo l'envoie à l'arrêt, attends le message « Vidéo
   enregistrée ».
+
+## Licence
+
+Capturo est distribué sous **GNU GPL version 3 ou ultérieure**. Voir le
+fichier [LICENSE](LICENSE).
 
 ## Notes de packaging
 

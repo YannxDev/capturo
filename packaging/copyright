@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: capturo
 Upstream-Contact: Yannick <yanmensx@gmail.com>
-Source: https://github.com/yannick
+Source: https://github.com/YannickDev/capturo
 
 Files: *
 Copyright: 2026 Yannick <yanmensx@gmail.com>
