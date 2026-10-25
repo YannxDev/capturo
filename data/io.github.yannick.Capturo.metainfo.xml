@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.yannick.Capturo</id>
+  <name>Capturo</name>
+  <summary>Enregistreur et diffuseur d'écran pour GNOME</summary>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+
+  <description>
+    <p>
+      Capturo enregistre ton écran ou une fenêtre, avec la vidéo et le son,
+      puis écrit directement le fichier dans le format et la qualité choisis.
+    </p>
+    <ul>
+      <li>MP4 (H.264), MKV (H.265) et WebM (VP9)</li>
+      <li>Quatre niveaux de qualité et résolution native, 4K, 1440p, 1080p, 720p ou 480p</li>
+      <li>24, 30 ou 60 images par seconde</li>
+      <li>Encodage matériel VA-API/NVENC avec repli logiciel automatique</li>
+      <li>MP4 fragmenté pour résister aux interruptions, fichier vérifié après capture</li>
+      <li>Aperçu en direct, désactivable pour économiser le processeur</li>
+      <li>Choix du micro, volumes 0–200 %, décalage audio et vumètre</li>
+      <li>Diffusion en direct RTMP (Twitch, YouTube, serveur personnalisé)</li>
+      <li>Incrustation de la webcam (position, taille, rectangle/carré/rond, miroir)</li>
+      <li>Caméra réseau MJPEG (HTTP), RTSP ou Capturo Webcam (Wi-Fi/USB), sans module noyau</li>
+      <li>Compte à rebours de 3, 5 ou 10 secondes, raccourcis Ctrl+R et Échap</li>
+      <li>Réduction pendant l'enregistrement et notification « Arrêter »</li>
+      <li>Modèle de nom de fichier, espace disque et taille estimée</li>
+      <li>Clé RTMP dans le trousseau GNOME (libsecret)</li>
+      <li>Ouverture de la vidéo dans le lecteur ou l'éditeur installé à la fin de l'enregistrement</li>
+      <li>Thème clair, sombre ou automatique et couleur d'accent au choix</li>
+      <li>Microphone, son du système et micro du téléphone, séparément ou ensemble</li>
+      <li>Sélection de l'écran ou de la fenêtre via le portail GNOME (Wayland et X11)</li>
+    </ul>
+  </description>
+
+  <launchable type="desktop-id">io.github.yannick.Capturo.desktop</launchable>
+  <provides>
+    <binary>capturo</binary>
+  </provides>
+  <categories>
+    <category>AudioVideo</category>
+    <category>Recorder</category>
+  </categories>
+
+  <url type="homepage">https://github.com/yannick</url>
+
+  <developer id="io.github.yannick">
+    <name>Yannick</name>
+  </developer>
+
+  <content_rating type="oars-1.1"/>
+
+  <releases>
+    <release version="1.6.2" date="2026-10-25">
+      <description>
+        <p>La détection de la caméra réseau conserve le jeton d'accès en Wi-Fi et en USB/adb : cliquer sur « Détecter » ne provoque plus d'erreur 401 Unauthorized. Le jeton est mémorisé dans la configuration.</p>
+      </description>
+    </release>
+    <release version="1.6.1" date="2026-10-25">
+      <description>
+        <p>Correction de la caméra réseau protégée par un jeton : le message 401 Unauthorized est expliqué et la fenêtre n'est plus réduite si le pipeline échoue immédiatement. Une notification « Enregistrement interrompu » permet de revenir à Capturo.</p>
+      </description>
+    </release>
+    <release version="1.6.0" date="2026-10-25">
+      <description>
+        <p>Encodage matériel VA-API/NVENC avec repli logiciel, MP4 fragmenté, choix du micro avec volumes et décalage, vumètre, aperçu désactivable, vérification du fichier, clé RTMP dans le trousseau, réduction et notification pendant l'enregistrement, modèle de nom de fichier, espace disque estimé, raccourcis Ctrl+R/Échap, manifeste Flatpak et CI.</p>
+      </description>
+    </release>
+    <release version="1.5.2" date="2026-10-25">
+      <description>
+        <p>Choix libre du lecteur ou de l'éditeur via « Choisir… », fermeture pendant un enregistrement sans blocage et journal de diagnostic.</p>
+      </description>
+    </release>
+    <release version="1.5.1" date="2026-10-25">
+      <description>
+        <p>Choix d'un lecteur vidéo installé, masque rond réellement transparent, fermeture et arrêt fiables, détection USB plus explicite.</p>
+      </description>
+    </release>
+    <release version="1.5.0" date="2026-10-23">
+      <description>
+        <p>Débit vidéo réglable, 24 i/s, masque circulaire corrigé, détection USB adb automatique, liste d'éditeurs simplifiée et accents appliqués à tous les contrôles.</p>
+      </description>
+    </release>
+    <release version="1.4.0" date="2026-10-23">
+      <description>
+        <p>Diffusion RTMP, aperçu en direct, éditeur vidéo, thème et couleur d'accent.</p>
+      </description>
+    </release>
+    <release version="1.3.0" date="2026-10-23">
+      <description>
+        <p>Aperçu, 4K/1440p, cadrage rond et micro du téléphone.</p>
+      </description>
+    </release>
+    <release version="1.2.1" date="2026-10-23">
+      <description>
+        <p>Correction du lanceur installé (démarrage de l'application).</p>
+      </description>
+    </release>
+    <release version="1.2.0" date="2026-10-23">
+      <description>
+        <p>Caméra réseau MJPEG/RTSP et recherche des caméras branchées.</p>
+      </description>
+    </release>
+    <release version="1.1.0" date="2026-10-23">
+      <description>
+        <p>Incrustation de la caméra, compte à rebours, pause/reprise et dossier par défaut.</p>
+      </description>
+    </release>
+    <release version="1.0.0" date="2026-10-23">
+      <description>
+        <p>Version initiale.</p>
+      </description>
+    </release>
+  </releases>
+</component>

@@ -1,0 +1,65 @@
+Package: capturo
+Version: @VERSION@
+Section: video
+Priority: optional
+Architecture: all
+Installed-Size: @SIZE@
+Depends: python3 (>= 3.10),
+         python3-gi,
+         python3-cairo,
+         gir1.2-gtk-4.0,
+         gir1.2-adw-1,
+         gir1.2-gstreamer-1.0,
+         gstreamer1.0-plugins-base,
+         gstreamer1.0-plugins-good,
+         gstreamer1.0-plugins-bad,
+         gstreamer1.0-plugins-ugly,
+         gstreamer1.0-libav,
+         gstreamer1.0-pipewire,
+         xdg-desktop-portal,
+         xdg-desktop-portal-gnome
+Recommends: gir1.2-secret-1,
+            gstreamer1.0-vaapi,
+            gstreamer1.0-tools
+Maintainer: Yannick <yannick@example.com>
+Homepage: https://github.com/yannick
+Description: Enregistreur et diffuseur d'écran pour GNOME
+ Capturo enregistre l'écran ou une fenêtre avec la vidéo et le son,
+ puis écrit directement le fichier dans le format choisi ou le diffuse
+ en direct via RTMP (Twitch, YouTube, serveur personnalisé).
+ .
+ Il propose MP4 (H.264), MKV (H.265) et WebM (VP9), quatre niveaux de
+ qualité, la 4K/1440p/1080p/720p/480p, le choix des images par seconde,
+ ainsi que le microphone et le son du système. Un aperçu en direct est
+ affiché pendant la capture, et peut être désactivé pour économiser le
+ processeur en 4K.
+ .
+ L'encodage matériel VA-API ou NVENC est utilisé quand il est disponible,
+ avec un repli logiciel automatique. Le MP4 peut être fragmenté pour rester
+ lisible même si l'application est interrompue. Le fichier produit est
+ vérifié à la fin de la capture.
+ .
+ Le micro se choisit parmi les entrées détectées, avec un volume et un
+ décalage réglables ; un vumètre suit le mixage. Les volumes du micro et du
+ son système vont de 0 à 200 %.
+ .
+ L'interface permet d'incruster la webcam (position, taille, cadre
+ rectangle/carré/rond, miroir), d'ajouter un compte à rebours et de
+ choisir un thème clair, sombre ou automatique avec une couleur d'accent.
+ À la fin de l'enregistrement, Capturo peut ouvrir la vidéo dans un
+ lecteur ou un éditeur installé (VLC, Showtime, Totem, Kdenlive, Shotcut,
+ etc.). Le bouton « Choisir… » liste toutes les applications vidéo
+ installées, natives, Flatpak ou Snap, et permet aussi de désigner un
+ exécutable ou une AppImage.
+ .
+ Une caméra réseau MJPEG, RTSP ou Capturo Webcam (Wi-Fi/USB) peut
+ remplacer la webcam, sans module noyau. La sélection de la source passe
+ par le portail ScreenCast de GNOME et fonctionne sous Wayland comme
+ sous X11.
+ .
+ Le nom des fichiers suit un modèle date/heure personnalisable ; l'espace
+ disque libre et la taille estimée par minute sont affichés. La clé RTMP
+ est conservée dans le trousseau GNOME (libsecret) quand il est disponible.
+ Pendant un enregistrement, Capturo peut se réduire et proposer une
+ notification « Arrêter ». Les raccourcis Ctrl+R (enregistrer/arrêter) et
+ Échap (annuler le compte à rebours) sont disponibles.

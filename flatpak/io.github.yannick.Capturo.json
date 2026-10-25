@@ -1,0 +1,49 @@
+{
+  "app-id": "io.github.yannick.Capturo",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "48",
+  "sdk": "org.gnome.Sdk",
+  "command": "capturo",
+  "finish-args": [
+    "--share=ipc",
+    "--socket=wayland",
+    "--socket=fallback-x11",
+    "--socket=pulseaudio",
+    "--share=network",
+    "--device=dri",
+    "--filesystem=xdg-videos",
+    "--filesystem=xdg-config/capturo:create",
+    "--filesystem=xdg-cache/capturo:create",
+    "--talk-name=org.freedesktop.secrets",
+    "--talk-name=org.freedesktop.portal.Desktop"
+  ],
+  "add-extensions": {
+    "org.freedesktop.Platform.GStreamer": {
+      "directory": "lib/extensions/gstreamer",
+      "subdirectories": true,
+      "no-autodownload": false,
+      "version": "24.08"
+    }
+  },
+  "modules": [
+    {
+      "name": "capturo",
+      "buildsystem": "simple",
+      "build-commands": [
+        "install -d /app/lib/capturo /app/bin /app/share/applications /app/share/icons/hicolor/scalable/apps /app/share/metainfo /app/share/locale",
+        "install -m 644 capturo/*.py /app/lib/capturo/",
+        "install -m 755 data/capturo /app/bin/capturo",
+        "install -m 644 data/io.github.yannick.Capturo.desktop /app/share/applications/",
+        "install -m 644 data/io.github.yannick.Capturo.svg /app/share/icons/hicolor/scalable/apps/",
+        "install -m 644 data/io.github.yannick.Capturo.metainfo.xml /app/share/metainfo/",
+        "if [ -d po ]; then for lang in po/*.po; do [ -e \"$lang\" ] || continue; code=$(basename \"$lang\" .po); install -d \"/app/share/locale/$code/LC_MESSAGES\"; msgfmt \"$lang\" -o \"/app/share/locale/$code/LC_MESSAGES/capturo.mo\"; done; fi"
+      ],
+      "sources": [
+        {
+          "type": "dir",
+          "path": ".."
+        }
+      ]
+    }
+  ]
+}

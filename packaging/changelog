@@ -1,0 +1,147 @@
+capturo (1.6.2) unstable; urgency=medium
+
+  * La détection de la caméra réseau (Wi-Fi, USB/adb) conserve désormais le
+    jeton d'accès : « Détecter » ne remplace plus une URL valide par une URL
+    sans jeton qui échouait en 401 Unauthorized.
+  * Le jeton est mémorisé dans la configuration et réinjecté même quand adb
+    ne peut pas le transmettre.
+  * La découverte USB réutilise le jeton annoncé par le téléphone en Wi-Fi.
+
+ -- Yannick <yannick@example.com>  Sun, 25 Oct 2026 13:40:00 +0100
+
+capturo (1.6.1) unstable; urgency=medium
+
+  * Caméra réseau protégée par un jeton : le message 401 Unauthorized est
+    maintenant expliqué clairement (« ajoute ?token=… »).
+  * La fenêtre n'est plus réduite avant 1,5 s ; si le pipeline échoue
+    immédiatement, elle reste visible au lieu de donner l'impression que
+    Capturo s'est fermé.
+  * En cas d'échec, une notification « Enregistrement interrompu » avec le
+    bouton « Afficher » permet de revenir à la fenêtre.
+  * La restauration de la fenêtre annule aussi la réduction différée.
+
+ -- Yannick <yannick@example.com>  Sun, 25 Oct 2026 13:30:00 +0100
+
+capturo (1.6.0) unstable; urgency=medium
+
+  * Encodage matériel VA-API/NVENC (Auto, Logiciel ou Matériel) avec repli
+    logiciel automatique et détection affichée dans l'interface.
+  * MP4 fragmenté (mp4mux fragment-duration/streamable) pour garder un
+    fichier lisible même après une interruption.
+  * Audio avancé : choix du micro détecté, volumes micro et système de 0 à
+    200 %, décalage du micro de -500 à +500 ms et vumètre pendant la capture.
+  * Aperçu en direct désactivable pour économiser le processeur, notamment
+    en 4K.
+  * Vérification du fichier produit avec gst-discoverer-1.0 après l'arrêt.
+  * Clé RTMP conservée dans le trousseau GNOME via libsecret, avec repli sur
+    config.json si le trousseau est indisponible.
+  * Réduction de la fenêtre pendant l'enregistrement et notification avec
+    les actions « Arrêter » et « Afficher ».
+  * Modèle de nom de fichier personnalisable, espace disque libre et taille
+    estimée par minute, refus si moins de 300 Mo sont disponibles.
+  * Raccourcis Ctrl+R (enregistrer/arrêter) et Échap (annuler le compte à
+    rebours).
+  * Filtrage des moniteurs et sources factices dans la liste des micros.
+  * Capturo Webcam 2.1 : jeton d'accès HTTP, QR de l'adresse, torche,
+    maintien de l'écran éveillé et choix de 15/24/30/60 i/s.
+  * Manifeste Flatpak, workflow GitHub Actions, infrastructure gettext et
+    captures d'interface.
+
+ -- Yannick <yannick@example.com>  Sun, 25 Oct 2026 13:00:00 +0100
+
+capturo (1.5.2) unstable; urgency=medium
+
+  * Choix libre du lecteur/éditeur : nouveau bouton « Choisir… » qui liste
+    toutes les applications vidéo installées (natives, Flatpak, Snap) et
+    permet aussi de parcourir un exécutable ou un fichier .desktop.
+  * Fermeture pendant un enregistrement : l'arrêt démarre immédiatement,
+    la session du portail est fermée hors de la boucle GTK et un garde-fou
+    empêche Capturo de rester bloqué.
+  * Arrêt plus rapide : l'EOS est traité en quelques millisecondes, avec
+    une finalisation directe du muxeur si la source live ne répond pas.
+  * Journal de diagnostic (~/.cache/capturo/capturo.log) accessible depuis
+    le menu « Ouvrir le journal ».
+
+ -- Yannick <yannick@example.com>  Sun, 25 Oct 2026 12:10:00 +0100
+
+capturo (1.5.1) unstable; urgency=medium
+
+  * Sélection d'un lecteur vidéo installé (VLC, Showtime, Totem, Celluloid,
+    Haruna, Clapper, MPV…) en plus des éditeurs. La liste est intitulée
+    « Lecteur / éditeur vidéo » et le prompt devient « Ouvrir la vidéo ? ».
+  * Masque rond réellement transparent : la caméra et le masque alpha sont
+    négociés en plage complète (0–255). Le carré noir à ~6 % derrière le
+    cercle a disparu et la webcam est opaque.
+  * Arrêt et fermeture fiables : la remise à NULL du pipeline se fait dans
+    un fil d'exécution d'arrière-plan, avec un délai borné. Fermer Capturo
+    depuis la barre des tâches pendant un enregistrement ne bloque plus
+    l'interface et ne demande plus de force quit.
+  * Détection USB plus explicite : messages dédiés pour adb absent,
+    téléphone non autorisé, hors ligne ou application non démarrée.
+  * Documentation mise à jour (lecteurs, masque, arrêt).
+
+ -- Yannick <yannick@example.com>  Sun, 25 Oct 2026 11:30:00 +0100
+
+capturo (1.5.0) unstable; urgency=medium
+
+  * Réglage manuel du débit vidéo (0 = automatique, jusqu'à 100 000 kb/s).
+  * Ajout de 24 i/s à côté de 30 et 60 i/s.
+  * Cadrage circulaire corrigé : conservation du canal alpha (A420) et
+    coins réellement transparents.
+  * Détection USB automatique via adb forward, en plus du partage de
+    connexion et du Wi-Fi.
+  * Liste des éditeurs vidéo simplifiée : uniquement les applications
+    détectées, avec détection Flatpak, Snap, AppImage et lanceurs .desktop.
+  * Couleur d'accent appliquée aux interrupteurs, cases à cocher, boutons
+    radio, échelles et barres de progression, y compris avec Yaru.
+  * Thème automatique et changement d'accent appliqués immédiatement.
+
+ -- Yannick <yannick@example.com>  Fri, 23 Oct 2026 22:30:00 +0200
+
+capturo (1.4.0) unstable; urgency=medium
+
+  * Diffusion en direct RTMP (Twitch, YouTube ou serveur personnalisé),
+    seule ou en même temps que l'enregistrement local.
+  * Suppression de la pause/reprise.
+  * Ouverture de la vidéo dans l'éditeur installé après l'enregistrement.
+  * Interface modernisée : thème clair/sombre/automatique et couleur
+    d'accent (bleu, rouge, vert, etc.).
+  * Détection renforcée de Capturo Webcam en USB (adb forward et partage
+    de connexion).
+
+ -- Yannick <yannick@example.com>  Fri, 23 Oct 2026 22:30:00 +0200
+
+capturo (1.3.0) unstable; urgency=medium
+
+  * Aperçu en direct de l'enregistrement dans la fenêtre, comme OBS.
+  * Résolution 4K (2160p) et 1440p en plus des formats existants.
+  * Cadrage de la webcam : rectangle, carré ou cercle.
+  * Micro du téléphone via Capturo Webcam (/audio), mixé avec le son
+    du système et le microphone local.
+  * Migration automatique des préférences de résolution 1.2.x.
+
+ -- Yannick <yannick@example.com>  Fri, 23 Oct 2026 21:30:00 +0200
+
+capturo (1.2.1) unstable; urgency=medium
+
+  * Correction du lanceur installé : le paquet était introuvable au
+    démarrage (ModuleNotFoundError).
+
+ -- Yannick <yannick@example.com>  Fri, 23 Oct 2026 20:15:00 +0200
+
+capturo (1.2.0) unstable; urgency=medium
+
+  * Caméra réseau MJPEG (HTTP) et RTSP, sans module noyau.
+  * Bouton « Rechercher » pour rescaner les caméras branchées.
+  * Mode d'utilisation d'un téléphone comme webcam documenté.
+
+ -- Yannick <yannick@example.com>  Fri, 23 Oct 2026 19:30:00 +0200
+
+capturo (1.1.0) unstable; urgency=medium
+
+  * Incrustation de la caméra (position, taille, miroir).
+  * Compte à rebours de 3, 5 ou 10 secondes.
+  * Pause et reprise de l'enregistrement.
+  * Bouton pour revenir au dossier de destination par défaut.
+
+ -- Yannick <yannick@example.com>  Fri, 23 Oct 2026 18:00:00 +0200

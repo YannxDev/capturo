@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Capturo
+Comment=Enregistreur et diffusion d'écran (MP4, MKV, WebM, RTMP)
+Exec=capturo
+Icon=io.github.yannick.Capturo
+Terminal=false
+Type=Application
+Categories=AudioVideo;Recorder;GTK;
+Keywords=capture;enregistrement;écran;screen;recorder;vidéo;video;
+StartupNotify=true

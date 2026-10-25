@@ -1,0 +1,16 @@
+#!/usr/bin/python3
+"""Lanceur installé dans /usr/bin/capturo (ou /app/bin en Flatpak)."""
+
+import os
+import sys
+
+# Paquet Debian : /usr/lib/capturo ; Flatpak : /app/lib/capturo.
+for library in ("/app/lib", "/usr/lib"):
+    if os.path.isdir(os.path.join(library, "capturo")):
+        sys.path.insert(0, library)
+        break
+
+from capturo.app import main  # noqa: E402
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv))
