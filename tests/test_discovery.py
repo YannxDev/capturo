@@ -28,7 +28,7 @@ def test_url_token() -> None:
     token = tokens.url_token
     check(token("") == "", "URL vide : aucun jeton attendu")
     check(
-        token("http://127.0.0.1:8080/video?token=G4T8YQG2") == "G4T8YQG2",
+        token("http://127.0.0.1:8080/video?token=TESTTOKEN") == "TESTTOKEN",
         "jeton simple non extrait",
     )
     check(
@@ -44,8 +44,8 @@ def test_url_token() -> None:
 def test_url_with_token() -> None:
     add = tokens.url_with_token
     check(
-        add("http://127.0.0.1:8080/video", "G4T8YQG2")
-        == "http://127.0.0.1:8080/video?token=G4T8YQG2",
+        add("http://127.0.0.1:8080/video", "TESTTOKEN")
+        == "http://127.0.0.1:8080/video?token=TESTTOKEN",
         "jeton non ajouté à une URL simple",
     )
     check(
@@ -64,8 +64,8 @@ def test_url_with_token() -> None:
 def test_usb_with_token() -> None:
     add = discovery.usb_with_token
     check(
-        add("http://127.0.0.1:8080/video", {"G4T8YQG2"})
-        == "http://127.0.0.1:8080/video?token=G4T8YQG2",
+        add("http://127.0.0.1:8080/video", {"TESTTOKEN"})
+        == "http://127.0.0.1:8080/video?token=TESTTOKEN",
         "le jeton Wi-Fi doit être réutilisé pour l'USB",
     )
     check(
@@ -95,18 +95,18 @@ def test_detection_preserves_token() -> None:
     check(
         preserve(
             "http://127.0.0.1:8080/video",
-            "http://127.0.0.1:8080/video?token=G4T8YQG2",
+            "http://127.0.0.1:8080/video?token=TESTTOKEN",
         )
-        == "http://127.0.0.1:8080/video?token=G4T8YQG2",
+        == "http://127.0.0.1:8080/video?token=TESTTOKEN",
         "le jeton de l'ancienne URL doit être conservé",
     )
     check(
         preserve(
             "http://127.0.0.1:8080/video",
             "http://127.0.0.1:8080/video",
-            "G4T8YQG2",
+            "TESTTOKEN",
         )
-        == "http://127.0.0.1:8080/video?token=G4T8YQG2",
+        == "http://127.0.0.1:8080/video?token=TESTTOKEN",
         "le jeton mémorisé doit être réinjecté",
     )
     check(
